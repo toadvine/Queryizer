@@ -1,7 +1,7 @@
 __author__ = 'benjamin_sanchez'
 
 
-def getList(i):
+def get_list(i):
     query_hold = list()
     f = open(i, 'r')
     for line in f:
@@ -10,19 +10,27 @@ def getList(i):
     return query_hold
 
 
-def makeQuery(i):
-    answer = [int(x.rstrip('\n')) for x in i]
-    
+def make_query(i):
+    temp_answer = [int(x.rstrip('\n')) for x in i]
+    hold_answer = ""
+    for x in temp_answer:
+        if temp_answer.index(x) == len(temp_answer) - 1:
+            hold_answer += str(x)
+        else:
+            hold_answer += str(x)
+            hold_answer += ", "
+    answer = "SELECT * FROM /**put in your table here**/ WHERE /**put variable there**/ in (" + hold_answer + ")"
     return answer
 
 
-def writeOut(i):
+def write_out(i):
+    return i
 
 
 def main():
-    f = getList('inputList.txt')
-    a = makeQuery(f)
-    print (a)
-    #writeOut(a)
+    f = get_list('inputList.txt')
+    a = make_query(f)
+    write_out(a)
+    print(a)
 
 main()
